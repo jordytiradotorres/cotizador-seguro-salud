@@ -1,0 +1,185 @@
+.login {
+  position: relative;
+
+  @include mq(medium) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10rem;
+    min-height: 100vh;
+    align-content: center;
+  }
+
+  &__base {
+    max-height: 100vh;
+    width: 100%;
+
+    @include mq(medium) {
+      max-height: 600px;
+    }
+  }
+
+  &__shadow {
+    position: absolute;
+    top: 13rem;
+    left: 14rem;
+
+    @include mq(medium) {
+      top: 10rem;
+      left: 24rem;
+    }
+  }
+
+  &__hero {
+    position: relative;
+    @include mq(medium) {
+      width: 500px;
+    }
+  }
+
+  &__information {
+    position: absolute;
+    top: 0;
+    left: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    color: $light-gray;
+
+    @include mq(medium) {
+      min-height: initial;
+      top: 16rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: normal;
+      line-height: 1.4;
+      margin-bottom: 2rem;
+      margin-top: -5rem;
+
+      span {
+        display: block;
+        font-weight: bold;
+        color: $white;
+      }
+    }
+
+    figure {
+      img {
+        width: 20px;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .service {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.2rem;
+    }
+  }
+
+  &__copyright {
+    position: absolute;
+    bottom: 5rem;
+
+    @include mq(medium) {
+      bottom: -13rem;
+    }
+  }
+
+  &__form {
+    position: relative;
+    top: 3rem;
+    color: #444;
+    margin-bottom: 5rem;
+
+    @include mq(medium) {
+      top: 10rem;
+    }
+
+    h2 {
+      font-weight: normal;
+      margin-bottom: 0.5rem;
+
+      span {
+        color: $blue;
+        font-weight: bold;
+      }
+    }
+
+    p {
+      margin-bottom: 2rem;
+    }
+
+    form {
+      @include mq(medium) {
+        width: 300px;
+      }
+
+      .field {
+        border: thin solid $light-black;
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.2rem;
+        border-radius: 0.3rem;
+
+        select {
+          border: none;
+          border-right: thin solid $light-black;
+          padding: 1rem;
+        }
+
+        label {
+          position: relative;
+          display: block;
+          margin-left: 1rem;
+          padding: 1rem 0;
+          width: 100%;
+
+          span {
+            position: absolute;
+            top: 14px;
+            left: 0;
+            z-index: 10;
+            font-size: 0.9rem;
+          }
+
+          input {
+            position: relative;
+            border: none;
+          }
+          input[type="date"] {
+            display: flex;
+            margin-left: auto;
+            margin-right: 0.5rem;
+          }
+        }
+      }
+
+      .button {
+        @include button();
+      }
+    }
+
+    .terms {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      margin-top: 1rem;
+
+      p {
+        margin-bottom: 0;
+
+        a {
+          color: #444;
+          font-weight: 600;
+        }
+      }
+
+      input {
+        margin-right: 0.75rem;
+      }
+    }
+  }
+}

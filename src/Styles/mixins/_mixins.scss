@@ -13,3 +13,20 @@
     }
   }
 }
+
+@mixin button() {
+  display: block;
+  margin-top: 3rem;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  background-color: $blue;
+  color: $light-gray;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: lighten($blue, 8);
+  }
+}

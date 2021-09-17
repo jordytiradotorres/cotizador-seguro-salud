@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap");
+
 :root {
   box-sizing: border-box;
   font-size: 13px;
@@ -40,13 +42,16 @@ ul a {
 
 body {
   margin: 0;
-  // font-family: $font-barlow;
+  font-family: $font-open-sans;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // background-color: $light-grayish-blue;
+}
+
+input {
+  outline: none;
 }
 
 .wrapper {
