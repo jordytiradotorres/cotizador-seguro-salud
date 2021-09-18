@@ -75,5 +75,13 @@ input {
   bottom: 0;
   right: 0;
   padding: 0.5rem;
-  // color: $very-dark-blackish-blue;
+}
+
+.error {
+  margin-bottom: 1rem;
+  margin-top: -0.5rem;
+  font-size: 0.85rem;
+  color: $red;
+  font-style: italic;
+  font-weight: bold;
 }

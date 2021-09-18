@@ -1,0 +1,64 @@
+.addPatients {
+  @include mq(medium) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    min-height: 100vh;
+    align-content: center;
+  }
+
+  &__imgBase {
+    @include mq(medium) {
+      max-height: 600px;
+      width: initial;
+    }
+  }
+  &__imgShadow {
+    @include mq(medium) {
+      left: 6rem;
+    }
+  }
+
+  &__content {
+    @include mq(medium) {
+      top: 2rem;
+    }
+
+    h2 {
+      margin-top: 2rem;
+    }
+
+    p.subtitle {
+      font-size: 1.1rem;
+    }
+
+    .gender,
+    .insure {
+      p {
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+      }
+
+      label {
+        display: flex;
+        margin-bottom: 1rem;
+        label {
+          margin-bottom: 0;
+        }
+
+        span {
+          font-weight: bold;
+        }
+      }
+
+      input {
+        margin-right: 0.5rem;
+      }
+    }
+
+    .gender,
+    .insure {
+      margin-top: 3rem;
+    }
+  }
+}
