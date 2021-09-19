@@ -1,13 +1,26 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router";
+import Button from "../components/Button";
+import CardBenefits from "../components/Card/CardBenefits";
 import CardMonthly from "../components/Card/CardMonthly";
 import Step from "../components/Step";
 import Title from "../components/Title";
 import base from "../images/Base.png";
 import shadow from "../images/Illustration-1.png";
-import illustration from "../images/Illustration.png";
 
 const ChoosePlan = () => {
-  // const { form, users, setUsers } = useContext(AuthContext);
+  const [typePlan, setTypePlan] = useState("Básico");
+  const history = useHistory();
+
+  const handleTypePlan = (e) => {
+    let parent = e.target.closest(".price");
+    let text = parent.children[2];
+    setTypePlan(text.textContent);
+  };
+
+  const handleSend = (e) => {
+    history.push("/thanks");
+  };
 
   useEffect(() => {
     const cards = [...document.querySelectorAll(".cards > .price")];
@@ -56,7 +69,7 @@ const ChoosePlan = () => {
         }
       });
     }
-  }, []);
+  }, [typePlan]);
 
   return (
     <section className="choosePlan">
@@ -83,38 +96,29 @@ const ChoosePlan = () => {
         />
 
         <div className="cards">
-          <CardMonthly plan="Básico" amount="160" />
-          <CardMonthly plan="Avanzado" amount="200" />
-          <CardMonthly plan="Premium" amount="250" />
-          <CardMonthly plan="Full" amount="500" />
+          <CardMonthly
+            plan="Básico"
+            amount="160"
+            handleTypePlan={handleTypePlan}
+          />
+          <CardMonthly
+            plan="Avanzado"
+            amount="200"
+            handleTypePlan={handleTypePlan}
+          />
+          <CardMonthly
+            plan="Premium"
+            amount="250"
+            handleTypePlan={handleTypePlan}
+          />
+          <CardMonthly
+            plan="Full"
+            amount="500"
+            handleTypePlan={handleTypePlan}
+          />
         </div>
 
-        <div className="cardBenefits">
-          <h3 className="cardBenefits__title">Cuentas con estos beneficios:</h3>
-          <div className="cardBenefits__head">
-            <div>
-              <h5>Cobertura máxima</h5>
-              <span>S/1MM</span>
-              <button className="button">Plan Básico</button>
-            </div>
-            <figure>
-              <img src={illustration} alt="illustration" />
-            </figure>
-          </div>
-
-          <div className="cardBenefits__body">
-            <p className="heartBlue">
-              💙 Lima <span>(zona de cobertura)</span>
-            </p>
-            <p className="heartBlue">
-              💙 +30 clínicas <span>(en red afiliada)</span>
-            </p>
-            <p className="heartBlack">🖤 Médico a domicilio</p>
-            <p className="heartBlack">🖤 Chequeos preventivos</p>
-            <p className="heartBlack">🖤 Reembolso nacional</p>
-            <p className="heartBlack">🖤 Reembolso internacional</p>
-          </div>
-        </div>
+        <CardBenefits typePlan={typePlan} />
 
         <div className="services">
           <h2 className="services__title">
@@ -134,7 +138,8 @@ const ChoosePlan = () => {
 
         <div className="buyPlan">
           <a href="https://gmail.com">Enviar cotizacion por correo</a>
-          <button className="button">Comprar plan</button>
+          {/* <button className="button">Comprar plan</button> */}
+          <Button content="Comprar plan" handleSend={handleSend} />
         </div>
       </div>
     </section>

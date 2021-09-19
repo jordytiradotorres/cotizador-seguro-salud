@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import LoginWrapper from "../components/Login/LoginWrapper";
 import AddPatients from "../pages/AddPatients";
+import Thanks from "../pages/Thanks";
 import Users from "../pages/Users";
 import ChoosePlan from "./../pages/ChoosePlan";
 
@@ -23,6 +24,9 @@ const AppRouter = () => {
           </Route>
           <Route path="/choosePlan" exact>
             <ChoosePlan />
+          </Route>
+          <Route path="/thanks" exact>
+            <Thanks />
           </Route>
           <Route path="/users" exact>
             <Users />

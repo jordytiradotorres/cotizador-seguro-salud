@@ -1,9 +1,9 @@
 import React from "react";
 import imgCheck from "../../images/gl_correct.png";
 
-const CardMonthly = ({ plan, amount }) => {
+const CardMonthly = ({ plan, amount, handleTypePlan }) => {
   return (
-    <div className="price">
+    <div className="price" onClick={handleTypePlan}>
       <span className="price__check"></span>
       <img src={imgCheck} alt="check" />
       <h3 className="price__title">{plan}</h3>
