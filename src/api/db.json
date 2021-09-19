@@ -1,0 +1,14 @@
+{
+  "patients": [
+    {
+      "dni": "47663313",
+      "birth": "12/12/1999",
+      "phone": "963963935",
+      "name": "jordy",
+      "fatherLastName": "tirado",
+      "motherLastName": "torres",
+      "gender": "masculino",
+      "insure": "me"
+    }
+  ]
+}

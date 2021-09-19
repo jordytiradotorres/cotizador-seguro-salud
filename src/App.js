@@ -66,7 +66,7 @@ const App = () => {
     return errors;
   };
 
-  const { form, errors, handleChange, handleBlur, handleSubmit } = useForm(
+  const { form, errors, handleChange, handleBlur } = useForm(
     initialForm,
     validateForm
   );
@@ -102,10 +102,9 @@ const App = () => {
           protectionPolicy,
           shippingPolicy,
           users,
-          setUsers,
           handleChange,
           handleBlur,
-          handleSubmit,
+          setUsers,
           handleCheckedProtectionPolicy,
           handleCheckedShippingPolicy,
           handleKeyDown,

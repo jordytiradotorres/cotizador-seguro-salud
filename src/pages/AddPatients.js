@@ -8,26 +8,37 @@ import base from "../images/Base.png";
 import shadow from "../images/Illustration-1.png";
 import Step from "./../components/Step/index";
 
+// import db from "../api/db.json";
+
 const AddPatients = () => {
-  const {
-    form,
-    errors,
-    handleSubmit,
-    handleChange,
-    handleBlur,
-    handleKeyDown,
-  } = useContext(AuthContext);
+  const { form, errors, handleADD, handleChange, handleBlur, handleKeyDown } =
+    useContext(AuthContext);
 
   const history = useHistory();
 
   const handleSend = (e) => {
-    if (
-      !errors.dni &&
-      !errors.birth &&
-      !errors.name &&
-      !errors.fatherLastName &&
-      !errors.motherLastName
-    ) {
+    e.preventDefault();
+
+    fetch("http://localhost:5000/patients", {
+      method: "POST",
+      body: JSON.stringify({
+        dni: form.dni,
+        birth: form.birth,
+        phone: form.phone,
+        name: form.name,
+        fatherLastName: form.fatherLastName,
+        motherLastName: form.motherLastName,
+        gender: form.gender,
+        insure: form.insure,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((result) => console.log(result));
+
+    if (Object.keys(errors).length === 0) {
       history.push("/choosePlan");
     } else {
       return;
@@ -60,7 +71,8 @@ const AddPatients = () => {
 
         <p className="subtitle">Datos personales del titular</p>
 
-        <form onSubmit={handleSubmit}>
+        {/* <form onSubmit={handleSubmit}> */}
+        <form onSubmit={handleSend}>
           <div className="field">
             <select name="option">
               <option value="dni">DNI</option>
@@ -186,7 +198,10 @@ const AddPatients = () => {
             </label>
           </div>
 
-          <Button content="Continuar" handleSend={handleSend} />
+          <button type="button" onClick={handleADD}>
+            agregar paciente
+          </button>
+          <Button content="Continuar" />
         </form>
       </div>
     </section>

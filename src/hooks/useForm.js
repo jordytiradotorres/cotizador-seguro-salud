@@ -18,17 +18,17 @@ const useForm = (initialForm, validateForm) => {
     setErrors(validateForm(form));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setErrors(validateForm(form));
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setErrors(validateForm(form));
+  // };
 
   return {
     form,
     errors,
     handleChange,
     handleBlur,
-    handleSubmit,
+    // handleSubmit,
   };
 };
 
