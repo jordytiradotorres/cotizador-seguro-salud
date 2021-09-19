@@ -1,0 +1,222 @@
+.choosePlan {
+  @include mq(medium) {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    gap: 6rem;
+    min-height: 100vh;
+    justify-content: space-evenly;
+    align-content: center;
+  }
+
+  .login__hero {
+    width: initial;
+  }
+
+  &__content {
+    width: 90%;
+    margin: 0 auto;
+
+    @include mq(medium) {
+      top: 2rem;
+      width: 500px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 110px);
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .price {
+      position: relative;
+      border: 3px solid rgb(230, 228, 228);
+      border-radius: 0.7rem;
+      padding: 1.2rem 1rem;
+      width: 110px;
+      cursor: pointer;
+
+      * + * {
+        margin-top: 0.5rem;
+      }
+
+      img {
+        width: 15px;
+        height: 15px;
+        display: none;
+        position: absolute;
+        right: 0.5rem;
+        top: 0;
+      }
+
+      &__check {
+        position: absolute;
+        right: 0.5rem;
+        top: 0.5rem;
+        border: thin solid rgb(230, 228, 228);
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+      }
+
+      &__title {
+        text-transform: uppercase;
+        font-weight: normal;
+        font-size: 1rem;
+      }
+
+      &__total {
+        display: flex;
+        align-items: flex-start;
+
+        span:first-child {
+          margin-top: 0.5rem;
+          font-size: 1.1rem;
+        }
+
+        span:last-child {
+          font-size: 2rem;
+          font-weight: bold;
+          margin-top: 0;
+        }
+      }
+
+      &__monthly {
+        margin-bottom: 0;
+      }
+    }
+
+    .cardBenefits {
+      border: 2px solid rgb(230, 228, 228);
+      border-radius: 0.5rem;
+      max-width: 512px;
+
+      &__title {
+        background-color: rgb(230, 228, 228);
+        padding: 0.5rem 0;
+        text-align: center;
+      }
+
+      &__head {
+        display: grid;
+        grid-template-columns: 70% 30%;
+        padding: 2rem;
+
+        div,
+        figure {
+          border-bottom: thin solid rgb(230, 228, 228);
+        }
+
+        figure {
+          img {
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+
+        div {
+          position: relative;
+
+          * + * {
+            margin-top: 0.75rem;
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            right: 3rem;
+            top: 0;
+            width: 1px;
+            height: 80%;
+            background-color: rgb(230, 228, 228);
+          }
+
+          display: flex;
+          flex-direction: column;
+
+          h5 {
+            font-size: 1.1rem;
+          }
+          span {
+            display: inline-block;
+            font-size: 2.2rem;
+            font-weight: bold;
+          }
+
+          button {
+            @include button();
+            margin-top: 0.75rem;
+            margin-bottom: 2rem;
+            width: 80px;
+            font-size: 0.7rem;
+            padding: 0.5rem;
+            border-radius: 1rem;
+            background-color: $green;
+          }
+        }
+      }
+
+      &__body {
+        padding: 0 2rem;
+
+        .heartBlack {
+          text-decoration: line-through;
+          color: $gray;
+        }
+      }
+    }
+
+    .services {
+      &__title {
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+
+        span {
+          display: block;
+        }
+      }
+
+      &__item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 0;
+        border-top: thin solid $gray;
+
+        &:last-child {
+          border-bottom: thin solid $gray;
+        }
+
+        span {
+          font-size: 1.3rem;
+          margin-right: 0.5rem;
+          color: $blue;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .buyPlan {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 4rem;
+      margin-top: 3rem;
+
+      a {
+        display: inline-block;
+        margin-right: 1.5rem;
+        text-decoration: none;
+        color: $gray;
+        text-transform: uppercase;
+      }
+
+      button {
+        @include button();
+        display: inline-block;
+        margin-top: 0;
+        padding: 1rem 2rem;
+      }
+    }
+  }
+}

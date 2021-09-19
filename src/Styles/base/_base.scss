@@ -48,6 +48,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 input {
@@ -84,4 +85,8 @@ input {
   color: $red;
   font-style: italic;
   font-weight: bold;
+}
+
+.card-active {
+  border-color: $green !important;
 }
