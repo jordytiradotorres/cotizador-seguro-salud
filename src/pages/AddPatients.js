@@ -198,9 +198,6 @@ const AddPatients = () => {
             </label>
           </div>
 
-          <button type="button" onClick={handleADD}>
-            agregar paciente
-          </button>
           <Button content="Continuar" />
         </form>
       </div>
