@@ -12,17 +12,6 @@
       "insure": "me"
     },
     {
-      "dni": "65984745",
-      "birth": "2021-08-31",
-      "phone": "960706650      ",
-      "name": "Juan",
-      "fatherLastName": "perez",
-      "motherLastName": "lopez",
-      "gender": "masculino",
-      "insure": "me",
-      "id": 1632290593703
-    },
-    {
       "dni": "70809965",
       "birth": "2021-01-07",
       "phone": "958963974",
@@ -32,6 +21,17 @@
       "gender": "femenino",
       "insure": "meAndFamily",
       "id": 1632291030358
+    },
+    {
+      "dni": "45856589",
+      "birth": "2021-09-09",
+      "phone": "987456321",
+      "name": "paolo",
+      "fatherLastName": "vera",
+      "motherLastName": "lara",
+      "gender": "masculino",
+      "insure": "meAndFamily",
+      "id": 1632293425836
     }
   ]
 }

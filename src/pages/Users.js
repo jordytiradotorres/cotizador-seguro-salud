@@ -8,9 +8,8 @@ const Users = () => {
   const { db, loading, error, deleteData } = useContext(AuthContext);
 
   return (
-    <div>
-      <h1>users</h1>
-
+    <>
+      <h1>Usuarios</h1>
       {loading && <Loader />}
       {error && (
         <Message
@@ -18,24 +17,26 @@ const Users = () => {
           bgColor="#dc3545"
         />
       )}
-      {db
-        ? db.map((item) => (
-            <div key={item.id}>
-              <p>
-                {item.name} {item.fatherLastName} {item.motherLastName}
-              </p>
-              <p>{item.dni}</p>
-              <p>{item.birth}</p>
-              <p>{item.gender}</p>
-              <p>{item.phone}</p>
-              <p>{item.insure}</p>
-              <button class="button" onClick={() => deleteData(item.id)}>
-                Eliminar
-              </button>
-            </div>
-          ))
-        : null}
-    </div>
+      <div className="users">
+        {db
+          ? db.map((item) => (
+              <div key={item.id}>
+                <p>
+                  {item.name} {item.fatherLastName} {item.motherLastName}
+                </p>
+                <p>DNI: {item.dni}</p>
+                <p>Fecha de Nacimiento: {item.birth}</p>
+                <p>Género: {item.gender}</p>
+                <p>Celular: {item.phone}</p>
+                <p>Seguro: {item.insure === "me" ? "Yo" : "Yo y mi familia"}</p>
+                <button className="button" onClick={() => deleteData(item.id)}>
+                  Eliminar
+                </button>
+              </div>
+            ))
+          : null}
+      </div>
+    </>
   );
 };
 
