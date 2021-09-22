@@ -1,16 +1,9 @@
-import { useHistory } from "react-router";
-import Button from "../components/Button";
+import { Link } from "react-router-dom";
 import Title from "../components/Title";
 import base from "../images/Base.png";
 import shadow from "../images/Illustration-1.png";
 
 const Thanks = () => {
-  const history = useHistory();
-
-  const handleSend = (e) => {
-    history.push("/");
-  };
-
   return (
     <section className="thanks">
       <div className="login__hero">
@@ -29,7 +22,9 @@ const Thanks = () => {
           <b>se pondra en contacto</b> contigo en las siguientes <b>48 horas</b>
         </p>
 
-        <Button content="Ir a salud" handleSend={handleSend} />
+        <Link class="button" to="/">
+          Ir a salud
+        </Link>
       </div>
     </section>
   );

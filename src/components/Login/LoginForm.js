@@ -11,7 +11,6 @@ const LoginForm = () => {
     errors,
     protectionPolicy,
     shippingPolicy,
-    handleSubmit,
     handleChange,
     handleBlur,
     handleCheckedProtectionPolicy,
@@ -20,9 +19,9 @@ const LoginForm = () => {
   } = useContext(AuthContext);
 
   const history = useHistory();
-  console.log(history);
 
-  const handleSend = (e) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (!errors.dni && !errors.date && !errors.phone) {
       history.push("/addPatients");
     } else {
@@ -120,8 +119,6 @@ const LoginForm = () => {
           <Button
             content="Comencemos"
             disabled={!protectionPolicy || !shippingPolicy}
-            handleSend={handleSend}
-            href="/addPatients"
           />
         </form>
       </div>

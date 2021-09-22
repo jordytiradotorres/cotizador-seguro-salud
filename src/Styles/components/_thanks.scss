@@ -16,6 +16,7 @@
   &__content {
     width: 90%;
     margin: 0 auto;
+    margin-bottom: 5rem;
 
     @include mq(medium) {
       top: 2rem;
@@ -31,11 +32,12 @@
       margin-top: -1.5rem;
     }
 
-    button {
+    a.button {
       @include button();
       margin-top: 1rem;
       display: flex;
       margin-left: auto;
+      width: fit-content;
     }
   }
 }

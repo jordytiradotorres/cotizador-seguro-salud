@@ -1,6 +1,7 @@
 {
   "patients": [
     {
+      "id": "1",
       "dni": "47663313",
       "birth": "12/12/1999",
       "phone": "963963935",
@@ -9,6 +10,28 @@
       "motherLastName": "torres",
       "gender": "masculino",
       "insure": "me"
+    },
+    {
+      "dni": "65984745",
+      "birth": "2021-08-31",
+      "phone": "960706650      ",
+      "name": "Juan",
+      "fatherLastName": "perez",
+      "motherLastName": "lopez",
+      "gender": "masculino",
+      "insure": "me",
+      "id": 1632290593703
+    },
+    {
+      "dni": "70809965",
+      "birth": "2021-01-07",
+      "phone": "958963974",
+      "name": "Raysa",
+      "fatherLastName": "Payac",
+      "motherLastName": "Guillermo",
+      "gender": "femenino",
+      "insure": "meAndFamily",
+      "id": 1632291030358
     }
   ]
 }

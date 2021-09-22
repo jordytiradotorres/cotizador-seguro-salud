@@ -1,47 +1,40 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import Message from "../components/Message";
+
+import { AuthContext } from "./../auth/AuthContext";
+import Loader from "./../components/Loader/index";
 
 const Users = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const response = fetch("http://localhost:5000/patients");
-
-    response
-      .then((result) => result.json())
-      .then((data) => {
-        setData(data);
-      });
-  }, []);
-
-  const handleDelete = (id) => {
-    // console.log(data);
-    //  data.filter((item) => item.id === id);
-    // const idd = fetch(
-    //   `https://my-json-server.typicode.com/jordytiradotorres/json-db/cursos/${id}`,
-    //   {
-    //     method: "DELETE",
-    //   }
-    // );
-  };
+  const { db, loading, error, deleteData } = useContext(AuthContext);
 
   return (
     <div>
       <h1>users</h1>
 
-      {data.map((item) => (
-        <div key={item.id}>
-          <h1>Nombre: {item.name}</h1>
-          <p>DNI: {item.dni}</p>
-          <p>Fecha de Nacimiento: {item.birth}</p>
-          <p>Apellido Paterno: {item.fatherLastName}</p>
-          <p>Apellido Materno: {item.motherLastName}</p>
-          <p>Genero: {item.gender}</p>
-          <p>Seguro: {item.insure}</p>
-          <button type="button" onClick={() => handleDelete(item.id)}>
-            eliminar
-          </button>
-        </div>
-      ))}
+      {loading && <Loader />}
+      {error && (
+        <Message
+          error={`Error: ${error.status} ${error.statusText}`}
+          bgColor="#dc3545"
+        />
+      )}
+      {db
+        ? db.map((item) => (
+            <div key={item.id}>
+              <p>
+                {item.name} {item.fatherLastName} {item.motherLastName}
+              </p>
+              <p>{item.dni}</p>
+              <p>{item.birth}</p>
+              <p>{item.gender}</p>
+              <p>{item.phone}</p>
+              <p>{item.insure}</p>
+              <button class="button" onClick={() => deleteData(item.id)}>
+                Eliminar
+              </button>
+            </div>
+          ))
+        : null}
     </div>
   );
 };

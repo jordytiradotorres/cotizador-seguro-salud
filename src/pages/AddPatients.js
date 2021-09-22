@@ -8,37 +8,27 @@ import base from "../images/Base.png";
 import shadow from "../images/Illustration-1.png";
 import Step from "./../components/Step/index";
 
-// import db from "../api/db.json";
-
 const AddPatients = () => {
-  const { form, errors, handleADD, handleChange, handleBlur, handleKeyDown } =
-    useContext(AuthContext);
+  const {
+    form,
+    setForm,
+    initialForm,
+    errors,
+    createData,
+    handleChange,
+    handleBlur,
+    handleKeyDown,
+  } = useContext(AuthContext);
 
   const history = useHistory();
 
-  const handleSend = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5000/patients", {
-      method: "POST",
-      body: JSON.stringify({
-        dni: form.dni,
-        birth: form.birth,
-        phone: form.phone,
-        name: form.name,
-        fatherLastName: form.fatherLastName,
-        motherLastName: form.motherLastName,
-        gender: form.gender,
-        insure: form.insure,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((result) => console.log(result));
+    createData(form);
 
     if (Object.keys(errors).length === 0) {
+      setForm(initialForm);
       history.push("/choosePlan");
     } else {
       return;
@@ -65,14 +55,14 @@ const AddPatients = () => {
 
         <Title
           subTitle="Hola"
-          subTitleBlue={form.name || "Paciente"}
+          subTitleBlue={form.name.toUpperCase() || "Paciente"}
           paragraph="Valida que los datos sean correctos"
         />
 
         <p className="subtitle">Datos personales del titular</p>
 
         {/* <form onSubmit={handleSubmit}> */}
-        <form onSubmit={handleSend}>
+        <form onSubmit={handleSubmit}>
           <div className="field">
             <select name="option">
               <option value="dni">DNI</option>
@@ -198,7 +188,7 @@ const AddPatients = () => {
             </label>
           </div>
 
-          <Button content="Continuar" />
+          <Button type="submit" content="Continuar" />
         </form>
       </div>
     </section>

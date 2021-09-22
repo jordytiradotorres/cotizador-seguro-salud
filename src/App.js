@@ -2,7 +2,8 @@ import "./Styles/App.scss";
 import AppRouter from "./routers/AppRouter";
 import { AuthContext } from "./auth/AuthContext";
 import useForm from "./hooks/useForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { helpHttp } from "./helpers/helpHttp";
 
 const App = () => {
   const initialForm = {
@@ -19,7 +20,76 @@ const App = () => {
   const [protectionPolicy, setProtectionPolicy] = useState(false);
   const [shippingPolicy, setShippingPolicy] = useState(false);
 
-  const [users, setUsers] = useState([]);
+  const [db, setDb] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  let url = "http://localhost:5000/patients";
+
+  useEffect(() => {
+    setLoading(true);
+    helpHttp()
+      .get(url)
+      .then((result) => {
+        console.log(result);
+        if (!result.err) {
+          setDb(result);
+          setError(null);
+          setLoading(false);
+        } else {
+          setDb(null);
+          setError(result);
+          setLoading(false);
+        }
+      });
+  }, [url]);
+
+  const createData = (data) => {
+    data.id = Date.now();
+
+    let options = {
+      body: data,
+      headers: {
+        "content-type": "application/json",
+      },
+    };
+
+    helpHttp()
+      .post(url, options)
+      .then((result) => {
+        console.log(result);
+        if (!result.err) {
+          setDb([...db, result]);
+        } else {
+          setError(result);
+        }
+      });
+  };
+
+  const deleteData = (id) => {
+    let isDeleted = window.confirm("Estas seguro de elimar");
+
+    if (isDeleted) {
+      let endpoint = `${url}/${id}`;
+
+      let options = {
+        headers: {
+          "content-type": "application/json",
+        },
+      };
+
+      helpHttp()
+        .del(endpoint, options)
+        .then((result) => {
+          if (!result.err) {
+            setDb(db.filter((item) => item.id !== id));
+          } else {
+            setError(result);
+          }
+        });
+    } else {
+      return;
+    }
+  };
 
   const validateForm = (form) => {
     let errors = {};
@@ -66,7 +136,7 @@ const App = () => {
     return errors;
   };
 
-  const { form, errors, handleChange, handleBlur } = useForm(
+  const { form, setForm, errors, handleChange, handleBlur } = useForm(
     initialForm,
     validateForm
   );
@@ -97,14 +167,19 @@ const App = () => {
     <div className="wrapper">
       <AuthContext.Provider
         value={{
+          initialForm,
           form,
+          setForm,
           errors,
           protectionPolicy,
           shippingPolicy,
-          users,
+          db,
+          loading,
+          error,
+          createData,
+          deleteData,
           handleChange,
           handleBlur,
-          setUsers,
           handleCheckedProtectionPolicy,
           handleCheckedShippingPolicy,
           handleKeyDown,

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router";
-import Button from "../components/Button";
+import { Link } from "react-router-dom";
 import CardBenefits from "../components/Card/CardBenefits";
 import CardMonthly from "../components/Card/CardMonthly";
 import Step from "../components/Step";
@@ -10,7 +9,6 @@ import shadow from "../images/Illustration-1.png";
 
 const ChoosePlan = () => {
   const [typePlan, setTypePlan] = useState("Básico");
-  const history = useHistory();
 
   const handleTypePlan = (e) => {
     let parent = e.target.closest(".price");
@@ -18,57 +16,24 @@ const ChoosePlan = () => {
     setTypePlan(text.textContent);
   };
 
-  const handleSend = (e) => {
-    history.push("/thanks");
-  };
-
   useEffect(() => {
     const cards = [...document.querySelectorAll(".cards > .price")];
 
-    for (let i = 0; i < cards.length; i++) {
-      cards[i].addEventListener("click", (e) => {
-        if (i === 0) {
-          cards[0].classList.add("card-active");
-          cards[1].classList.remove("card-active");
-          cards[2].classList.remove("card-active");
-          cards[3].classList.remove("card-active");
-          cards[0].children[1].style.display = "block";
-          cards[1].children[1].style.display = "none";
-          cards[2].children[1].style.display = "none";
-          cards[3].children[1].style.display = "none";
-        }
-        if (i === 1) {
-          cards[0].classList.remove("card-active");
-          cards[1].classList.add("card-active");
-          cards[2].classList.remove("card-active");
-          cards[3].classList.remove("card-active");
-          cards[3].children[1].style.display = "none";
-          cards[2].children[1].style.display = "none";
-          cards[0].children[1].style.display = "none";
-          cards[1].children[1].style.display = "block";
-        }
-        if (i === 2) {
-          cards[0].classList.remove("card-active");
-          cards[1].classList.remove("card-active");
-          cards[2].classList.add("card-active");
-          cards[3].classList.remove("card-active");
-          cards[2].children[1].style.display = "block";
-          cards[1].children[1].style.display = "none";
-          cards[0].children[1].style.display = "none";
-          cards[3].children[1].style.display = "none";
-        }
-        if (i === 3) {
-          cards[0].classList.remove("card-active");
-          cards[1].classList.remove("card-active");
-          cards[2].classList.remove("card-active");
-          cards[3].classList.add("card-active");
-          cards[2].children[1].style.display = "none";
-          cards[1].children[1].style.display = "none";
-          cards[0].children[1].style.display = "none";
-          cards[3].children[1].style.display = "block";
-        }
+    cards.forEach((card, index) => {
+      card.addEventListener("click", (e) => {
+        let parent = e.target.closest(".price");
+        parent.classList.add("card-active");
+        cards[index].children[1].style.display = "block";
+
+        const rest = cards.filter((card, i) => i !== index);
+        console.log(rest);
+
+        rest.forEach((item) => {
+          item.children[1].style.display = "none";
+          item.classList.remove("card-active");
+        });
       });
-    }
+    });
   }, [typePlan]);
 
   return (
@@ -138,8 +103,10 @@ const ChoosePlan = () => {
 
         <div className="buyPlan">
           <a href="https://gmail.com">Enviar cotizacion por correo</a>
-          {/* <button className="button">Comprar plan</button> */}
-          <Button content="Comprar plan" handleSend={handleSend} />
+
+          <Link class="button" to="/thanks">
+            Comprar plan
+          </Link>
         </div>
       </div>
     </section>
